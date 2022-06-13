@@ -1,5 +1,3 @@
-import axios from 'axios';
-import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 
 export default function CreateProfile({ onSubmit }) {
@@ -23,7 +21,7 @@ export default function CreateProfile({ onSubmit }) {
             type="text"
             name="slug"
             className="w-full bg-gray-100 text-gray-900 rounded-md h-12 pl-2 mt-3"
-            placeholder="Enter your unique profile URL"
+            placeholder="Enter your username"
             {...register('slug', { required: true })}
           />
         </div>

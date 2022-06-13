@@ -1,33 +1,14 @@
-import React from 'react';
-import axios from 'axios';
-import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 
-export default function EditProfile({ profile }) {
+export default function EditProfile({ profile, onSubmit }) {
   const { register, handleSubmit } = useForm({ defaultValues: profile });
-  const router = useRouter();
 
-  const onSubmitForm = async (values) => {
-    const config = {
-      url: '/api/editProfile',
-      method: 'POST',
-      data: values,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
-
-    const response = await axios(config);
-    if (response.status === 200) {
-      router.reload();
-    }
-  };
   return (
     <div className="w-full max-w-4xl mx-auto z-20">
       <h1 className="text-2xl font-semibold text-gray-900">
         Edit your profile
       </h1>
-      <form onSubmit={handleSubmit(onSubmitForm)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="grid grid-cols-2 gap-2">
           <input
             type="text"

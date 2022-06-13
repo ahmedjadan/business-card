@@ -3,10 +3,8 @@ import { getSession } from 'next-auth/react';
 import React from 'react';
 import ProfileCard from '../components/Profile';
 import Layout from '../layout';
-import { useRouter } from 'next/router';
 
 export default function Profile({ profile }) {
-  const router = useRouter();
 
   return (
     <Layout>

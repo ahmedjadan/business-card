@@ -1,16 +1,16 @@
 import axios from 'axios';
-import CreateProfile from '../components/CreateProfile';
 import { useRouter } from 'next/router';
-import Layout from '../layout';
-import { getSession } from 'next-auth/react';
 import { PrismaClient } from '@prisma/client';
+import { getSession } from 'next-auth/react';
+import Layout from '../layout';
+import EditProfile from '../components/EditProfile';
 
-export default function create() {
+export default function EditYourProfile({ profile }) {
   const router = useRouter();
+
   const onSubmitForm = async (values) => {
-    console.log(values);
     const config = {
-      url: '/api/createProfile',
+      url: '/api/editProfile',
       method: 'POST',
       data: values,
       headers: {
@@ -22,11 +22,10 @@ export default function create() {
     if (response.status === 200) {
       router.push('/profile');
     }
-    console.log('onSubmitForm ~ response', response);
   };
   return (
     <Layout>
-      <CreateProfile onSubmit={onSubmitForm} />
+      <EditProfile onSubmit={onSubmitForm} profile={profile} />
     </Layout>
   );
 }
@@ -38,21 +37,18 @@ export const getServerSideProps = async (context) => {
     return {
       redirect: {
         destination: '/',
-      },
-      props: {
-        session: null,
+        permenent: false,
       },
     };
   }
   const profile = await prisma.profile.findUnique({
     where: { email: session?.user?.email },
   });
-  
-  if (profile && session) {
-    return {
-      redirect: {
-        destination: '/profile',
-      },
-    };
-  }
+
+  return {
+    props: {
+      session,
+      profile,
+    },
+  };
 };

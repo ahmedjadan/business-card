@@ -54,7 +54,7 @@ export default function Profile({ profile }) {
       <div className="flex items-center justify-between max-w-sm space-x-4">
         <button
           className=" bg-indigo-700 text-white mt-8 rounded-md px-4 py-2 hover:bg-indigo-600"
-          onClick={() => setEdit(!editProfile)}
+          onClick={() => router.push('/edit')}
         >
           Edit Your Profile
         </button>
@@ -65,9 +65,9 @@ export default function Profile({ profile }) {
           Delete Your Profile
         </button>
       </div>
-      <div className=" ">
+      {/* <div className=" ">
         {editProfile && <EditProfile profile={profile} />}
-      </div>
+      </div> */}
     </div>
   );
 }
