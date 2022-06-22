@@ -13,7 +13,12 @@ export default function Header() {
           <h1 className="text-3xl font-bold text-gray-700">AJ.</h1>
         </a>
       </Link>
-      <button onClick={() => signIn()}>{!session ? 'Sign In' : ''}</button>
+      <Link href="/login">
+        <a>{!session ? 'Sign In' : ''}</a>
+      </Link>
+      {/* <div className="bg-red-500 px-4 py-2 rounded">
+        <button onClick={() => signIn()}>{!session ? 'Sign In' : ''}</button>
+      </div> */}
 
       {session && (
         <div className="flex items-center space-x-4 text-gray-700">

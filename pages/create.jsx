@@ -47,7 +47,7 @@ export const getServerSideProps = async (context) => {
   const profile = await prisma.profile.findUnique({
     where: { email: session?.user?.email },
   });
-  
+
   if (profile && session) {
     return {
       redirect: {
@@ -55,4 +55,10 @@ export const getServerSideProps = async (context) => {
       },
     };
   }
+
+  return {
+    props: {
+      session,
+    },
+  };
 };

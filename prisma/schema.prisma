@@ -1,8 +1,8 @@
 
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = "file:./dev.db"
 }
 
 generator client {
@@ -44,7 +44,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-   profile Profile?
+  profile       Profile?
 }
 
 model VerificationToken {
@@ -57,15 +57,15 @@ model VerificationToken {
 
  model Profile {
   id         String   @id @default(cuid())
-  name String
-  email String @unique
-  avatar String?
-  bio String
-  slug String @unique
-  phone String?
-  twitter String?
-  instagram String?
-  facebook String?   
-  userId String
-  user User @relation(fields: [userId], references: [id])
+  name       String
+  email      String @unique
+  avatar     String?
+  bio        String
+  slug       String @unique
+  phone      String?
+  twitter    String?
+  instagram  String?
+  facebook   String?   
+  userId     String
+  user       User @relation(fields: [userId], references: [id])
   }
